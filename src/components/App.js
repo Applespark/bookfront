@@ -11,11 +11,8 @@ const App = () => {
   const [myRating, setMyRating] = useState([]);
 
   const addRating = (rating) => {
-    myRating.push(rating);
-    setMyRating(myRating);
-    const user_based_param = myRating.join("&params=");
-    const url = `${baseUrl}/user-based/?params=${user_based_param}`;
-    setPersonalizeUrl(url);
+    // 이전 상태를 이용한 업데이트
+    setMyRating((prevMyRating) => [...prevMyRating, rating]);
   };
 
   useEffect(() => {
@@ -24,8 +21,7 @@ const App = () => {
       const url = `${baseUrl}/user-based/?params=${user_based_param}`;
       setPersonalizeUrl(url);
     }
-    console.log(personalizeUrl);
-  });
+  }, [myRating]); // myRating를 의존성 배열에 추가
 
   return (
     <div className="app">
@@ -77,3 +73,4 @@ const App = () => {
 };
 
 export default App;
+
