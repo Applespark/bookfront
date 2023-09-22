@@ -1,1 +1,1 @@
-export const baseUrl = "YOUR-API-URL";
+export const baseUrl = "http://pythonmasters.click:8080/";
