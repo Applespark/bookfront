@@ -1,6 +1,6 @@
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "../API/axios";
 import MovieModal from "./MovieModal";
 import "./Row.css";
@@ -10,21 +10,20 @@ const Row = ({ title, fetchUrl, id, addRating }) => {
   const [movies, setMovies] = useState([]);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [movieSelected, setMovieSelection] = useState({});
+  const rowRef = useRef(null);
 
-  //A snippet of code which runs based on a specific condition/variable
   useEffect(() => {
-    console.log(id, fetchUrl);
-    //if [], run once when the row loads, and dont run again
-
     async function fetchData() {
-      //Dont move until we get the API answer
-      const request = await axios.get(fetchUrl, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
-      setMovies(request.data.result);
-      return request;
+      try {
+        const request = await axios.get(fetchUrl, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        });
+        setMovies(request.data.result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
 
     fetchData();
@@ -34,23 +33,29 @@ const Row = ({ title, fetchUrl, id, addRating }) => {
     setModalVisibility(true);
     setMovieSelection(movie);
   };
+
+  const scrollLeft = () => {
+    if (rowRef.current) {
+      rowRef.current.scrollLeft -= window.innerWidth - 80;
+    }
+  };
+
+  const scrollRight = () => {
+    if (rowRef.current) {
+      rowRef.current.scrollLeft += window.innerWidth - 80;
+    }
+  };
+
   return (
     <section className="row">
-      {/** TITLE */}
       <h2>{title}</h2>
       <div className="slider">
         <div className="slider__arrow-left">
-          <span
-            className="arrow"
-            onClick={() => {
-              document.getElementById(id).scrollLeft -= window.innerWidth - 80;
-            }}
-          >
+          <span className="arrow" onClick={scrollLeft}>
             <ArrowBackIosIcon />
           </span>
         </div>
-        <div id={id} className="row__posters">
-          {/**SEVERAL ROW__POSTER */}
+        <div ref={rowRef} className="row__posters">
           {movies.map((movie, idx) => (
             <img
               key={idx}
@@ -63,12 +68,7 @@ const Row = ({ title, fetchUrl, id, addRating }) => {
           ))}
         </div>
         <div className="slider__arrow-right">
-          <span
-            className="arrow"
-            onClick={() => {
-              document.getElementById(id).scrollLeft += window.innerWidth - 80;
-            }}
-          >
+          <span className="arrow" onClick={scrollRight}>
             <ArrowForwardIosIcon />
           </span>
         </div>
