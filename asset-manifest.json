@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/bookfront/static/css/main.190e8e4e.chunk.css",
+    "main.js": "/bookfront/static/js/main.9eb47b29.chunk.js",
+    "main.js.map": "/bookfront/static/js/main.9eb47b29.chunk.js.map",
+    "runtime-main.js": "/bookfront/static/js/runtime-main.9e0a65fc.js",
+    "runtime-main.js.map": "/bookfront/static/js/runtime-main.9e0a65fc.js.map",
+    "static/js/2.163b2658.chunk.js": "/bookfront/static/js/2.163b2658.chunk.js",
+    "static/js/2.163b2658.chunk.js.map": "/bookfront/static/js/2.163b2658.chunk.js.map",
+    "index.html": "/bookfront/index.html",
+    "static/css/main.190e8e4e.chunk.css.map": "/bookfront/static/css/main.190e8e4e.chunk.css.map",
+    "static/js/2.163b2658.chunk.js.LICENSE.txt": "/bookfront/static/js/2.163b2658.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9e0a65fc.js",
+    "static/js/2.163b2658.chunk.js",
+    "static/css/main.190e8e4e.chunk.css",
+    "static/js/main.9eb47b29.chunk.js"
+  ]
+}
