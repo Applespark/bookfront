@@ -1,1 +1,1 @@
-export const baseUrl = "http://pythonmasters.click:8080/";
+export const baseUrl = "https://pythonmasters.click/";
